@@ -9,12 +9,11 @@ snake[0] = {
 };
 let direction = "right";
 let food = {
-    x: Math.floor(Math.random() * 20 + 1) * box,
-    y: Math.floor(Math.random() * 15 + 1) * box
+    x: Math.floor(Math.random() * (canvas.width / box)) * box,
+    y: Math.floor(Math.random() * (canvas.height / box)) * box
 };
 
 function gameLoop() {
-
     // Vérification des bords
     if (snake[0].x >= canvas.width) snake[0].x = 0;
     if (snake[0].x < 0) snake[0].x = canvas.width - box;
@@ -29,16 +28,16 @@ function gameLoop() {
         }
     }
 
-    context.fillStyle = "#34495e";
+    context.fillStyle = "#34495e"; // Couleur du plateau
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     // Dessin du serpent
     for (i = 0; i < snake.length; i++) {
-        context.fillStyle = "#000629";
+        context.fillStyle = "#000629"; // Couleur du serpent
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }
 
-    context.fillStyle = "red";
+    context.fillStyle = "red"; // Couleur de la nourriture
     context.fillRect(food.x, food.y, box, box);
 
     let snakeX = snake[0].x;
@@ -54,8 +53,8 @@ function gameLoop() {
         snake.pop();
     } else {
         score.innerHTML = snake.length;
-        food.x = Math.floor(Math.random() * 20 + 1) * box;
-        food.y = Math.floor(Math.random() * 15 + 1) * box;
+        food.x = Math.floor(Math.random() * (canvas.width / box)) * box;
+        food.y = Math.floor(Math.random() * (canvas.height / box)) * box;
     }
 
     let newHead = {
