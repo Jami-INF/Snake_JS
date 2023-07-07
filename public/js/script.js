@@ -14,11 +14,14 @@ let food = {
 };
 
 function gameLoop() {
+
+    // Vérification des bords
     if (snake[0].x >= canvas.width) snake[0].x = 0;
     if (snake[0].x < 0) snake[0].x = canvas.width - box;
     if (snake[0].y >= canvas.height) snake[0].y = 0;
     if (snake[0].y < 0) snake[0].y = canvas.height - box;
 
+    // Vérification de la collision avec le corps
     for (i = 1; i < snake.length; i++) {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
             clearInterval(jeu);
@@ -29,6 +32,7 @@ function gameLoop() {
     context.fillStyle = "#34495e";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
+    // Dessin du serpent
     for (i = 0; i < snake.length; i++) {
         context.fillStyle = "#000629";
         context.fillRect(snake[i].x, snake[i].y, box, box);
@@ -40,6 +44,7 @@ function gameLoop() {
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
 
+    // Déplacement du serpent
     if (direction == "right") snakeX += box;
     if (direction == "left") snakeX -= box;
     if (direction == "up") snakeY -= box;
